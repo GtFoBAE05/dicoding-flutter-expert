@@ -1,6 +1,8 @@
+import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
 import 'package:ditonton/presentation/provider/tv_series_search_notifier.dart';
 import 'package:ditonton/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/constants.dart';
@@ -8,6 +10,7 @@ import '../../common/state_enum.dart';
 
 class TvSeriesSearchPage extends StatefulWidget {
   static const ROUTE_NAME = "/search-tv-series";
+
   const TvSeriesSearchPage();
 
   @override
@@ -26,7 +29,9 @@ class _TvSeriesSearchPageState extends State<TvSeriesSearchPage> {
         children: [
           TextField(
             onSubmitted: (query) {
-              context.read<TvSeriesSearchNotifier>().fetchTvSeriesSearch(query);
+              context
+                  .read<TvSeriesSearchBloc>()
+                  .add(FetchSearchTvSeries(value: query));
             },
             decoration: InputDecoration(
               hintText: 'Search Tv Series name',
@@ -40,21 +45,25 @@ class _TvSeriesSearchPageState extends State<TvSeriesSearchPage> {
             'Search Result',
             style: kHeading6,
           ),
-          Consumer<TvSeriesSearchNotifier>(
-            builder: (context, value, child) {
-              if (value.state == RequestState.Loading) {
+          BlocBuilder<TvSeriesSearchBloc, TvSeriesState>(
+            builder: (context, state) {
+              if (state is SearchTvSeriesLoading) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (value.state == RequestState.Loaded) {
+              } else if (state is SearchTvSeriesSuccess) {
                 return Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.all(8),
                     itemBuilder: (context, index) {
-                      return TvSeriesCard(value.tvSeriesSearchResult[index]);
+                      return TvSeriesCard(state.tvSeriesList[index]);
                     },
-                    itemCount: value.tvSeriesSearchResult.length,
+                    itemCount: state.tvSeriesList.length,
                   ),
+                );
+              } else if (state is SearchTvSeriesError) {
+                return Center(
+                  child: Text(state.message),
                 );
               } else {
                 return Expanded(
@@ -62,7 +71,7 @@ class _TvSeriesSearchPageState extends State<TvSeriesSearchPage> {
                 );
               }
             },
-          ),
+          )
         ],
       ),
     );

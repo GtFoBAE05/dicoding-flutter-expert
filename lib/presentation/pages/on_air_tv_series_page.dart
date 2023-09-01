@@ -1,5 +1,7 @@
- import 'package:ditonton/presentation/provider/on_air_tv_series_notifier.dart';
+ import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
+import 'package:ditonton/presentation/provider/on_air_tv_series_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/state_enum.dart';
@@ -18,7 +20,7 @@ class OnAirTvSeries extends StatefulWidget {
     // TODO: implement initState
     super.initState();
     Future.microtask(() {
-      context.read<OnAirTvSeriesNotifier>().fetchOnAirTvSeries();
+      context.read<TvSeriesOnAirBloc>().add(FetchOnAirTvSeries());
     });
   }
 
@@ -28,27 +30,31 @@ class OnAirTvSeries extends StatefulWidget {
        appBar: AppBar(
          title: Text("On Air Tv Series"),
        ),
-       body: Consumer<OnAirTvSeriesNotifier>(
-         builder: (context, value, child) {
-           if (value.state == RequestState.Loading) {
+       body: BlocBuilder<TvSeriesOnAirBloc, TvSeriesState>(
+         builder: (context, state) {
+           if (state is OnAirTvSeriesInitial || state is OnAirTvSeriesLoading) {
              return Center(
                child: CircularProgressIndicator(),
              );
-           } else if (value.state == RequestState.Loaded) {
+           } else if (state is OnAirTvSeriesSuccess) {
              return ListView.builder(
                itemBuilder: (context, index) {
-                 return TvSeriesCard(value.tvSeries[index]);
+                 return TvSeriesCard(state.tvSeriesList[index]);
                },
-               itemCount: value.tvSeries.length,
+               itemCount: state.tvSeriesList.length,
              );
-           } else {
+           } else if(state is OnAirTvSeriesError){
              return Center(
                key: Key('error_message'),
-               child: Text(value.message),
+               child: Text(state.message),
+             );
+           }else{
+             return Center(
+               child: Text("ERR"),
              );
            }
          },
-       ),
+       )
      );
    }
  }

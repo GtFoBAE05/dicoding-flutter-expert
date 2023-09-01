@@ -43,6 +43,8 @@ import 'package:ditonton/presentation/provider/watchlist_tv_series_notifier.dart
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
+import 'presentation/bloc/tv_series/tv_series_bloc.dart';
+
 final locator = GetIt.instance;
 
 void init() {
@@ -84,44 +86,79 @@ void init() {
     ),
   );
 
+  // locator.registerFactory(
+  //   () => TvSeriesNotifier(
+  //     getTopRatedTvSeries: locator(),
+  //     getPopularTvSeries: locator(),
+  //     getOnAirTvSeries: locator(),
+  //   ),
+  // );
+  // locator.registerFactory(
+  //   () => TvSeriesDetailNotifier(
+  //       geTvSeriesWatchListStatus: locator(),
+  //       geTvSeriesRecommendations: locator(),
+  //       geTvSeriesDetail: locator(),
+  //       removeSeriesWatchlist: locator(),
+  //       saveSeriesWatchlist: locator()),
+  // );
+  // locator.registerFactory(
+  //   () => TvSeriesSearchNotifier(
+  //     searchTvSeries: locator(),
+  //   ),
+  // );
+  // locator.registerFactory(
+  //   () => PopularTvSeriesNotifier(
+  //     locator(),
+  //   ),
+  // );
+  // locator.registerFactory(
+  //       () => OnAirTvSeriesNotifier(
+  //     locator(),
+  //   ),
+  // );
+  // locator.registerFactory(
+  //   () => TopRatedTvSeriesNotifier(
+  //     getTopRatedTvSeries: locator(),
+  //   ),
+  // );
+  // locator.registerFactory(
+  //   () => WatchlistTvSeriesNotifier(
+  //     getTvSeriesWatchlist: locator(),
+  //   ),
+  // );
+
   locator.registerFactory(
-    () => TvSeriesNotifier(
-      getTopRatedTvSeries: locator(),
-      getPopularTvSeries: locator(),
-      getOnAirTvSeries: locator(),
-    ),
+        () => TvSeriesOnAirBloc(
+          locator()
+        )
   );
   locator.registerFactory(
-    () => TvSeriesDetailNotifier(
-        geTvSeriesWatchListStatus: locator(),
-        geTvSeriesRecommendations: locator(),
-        geTvSeriesDetail: locator(),
-        removeSeriesWatchlist: locator(),
-        saveSeriesWatchlist: locator()),
+        () => TvSeriesPopularBloc(
+        locator()),
   );
   locator.registerFactory(
-    () => TvSeriesSearchNotifier(
-      searchTvSeries: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => PopularTvSeriesNotifier(
+        () => TvSeriesTopRatedBloc(
       locator(),
     ),
   );
   locator.registerFactory(
-        () => OnAirTvSeriesNotifier(
+        () => TvSeriesDetailBloc(
       locator(),
     ),
   );
   locator.registerFactory(
-    () => TopRatedTvSeriesNotifier(
-      getTopRatedTvSeries: locator(),
+        () => TvSeriesRecommendationsBloc(
+      locator(),
     ),
   );
   locator.registerFactory(
-    () => WatchlistTvSeriesNotifier(
-      getTvSeriesWatchlist: locator(),
+        () => TvSeriesSearchBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => TvSeriesWatchlistBloc(
+      locator(),locator(),locator(),locator(),
     ),
   );
 
