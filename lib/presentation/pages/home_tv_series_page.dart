@@ -6,7 +6,6 @@ import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv_series_search_page.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/widgets/sub_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +13,6 @@ import 'package:provider/provider.dart';
 
 import '../../common/constants.dart';
 import '../bloc/tv_series/tv_series_bloc.dart';
-import '../provider/tv_series_list_notifier.dart';
 
 class TvSeriesHomePage extends StatefulWidget {
   static const ROUTE_NAME = "/tv-series";

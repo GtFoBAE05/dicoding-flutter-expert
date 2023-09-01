@@ -28,19 +28,6 @@ import 'package:ditonton/domain/usecases/save_watchlist.dart';
 import 'package:ditonton/domain/usecases/search_movies.dart';
 import 'package:ditonton/domain/usecases/search_tv_series.dart';
 import 'package:ditonton/presentation/bloc/movies/movie_bloc.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/on_air_tv_series_notifier.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/popular_tv_series_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_tv_series_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_series_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_series_list_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_series_search_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -49,84 +36,6 @@ import 'presentation/bloc/tv_series/tv_series_bloc.dart';
 final locator = GetIt.instance;
 
 void init() {
-  // provider
-  // locator.registerFactory(
-  //   () => MovieListNotifier(
-  //     getNowPlayingMovies: locator(),
-  //     getPopularMovies: locator(),
-  //     getTopRatedMovies: locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => MovieDetailNotifier(
-  //     getMovieDetail: locator(),
-  //     getMovieRecommendations: locator(),
-  //     getWatchListStatus: locator(),
-  //     saveWatchlist: locator(),
-  //     removeWatchlist: locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => MovieSearchNotifier(
-  //     searchMovies: locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => PopularMoviesNotifier(
-  //     locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => TopRatedMoviesNotifier(
-  //     getTopRatedMovies: locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => WatchlistMovieNotifier(
-  //     getWatchlistMovies: locator(),
-  //   ),
-  // );
-
-  // locator.registerFactory(
-  //   () => TvSeriesNotifier(
-  //     getTopRatedTvSeries: locator(),
-  //     getPopularTvSeries: locator(),
-  //     getOnAirTvSeries: locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => TvSeriesDetailNotifier(
-  //       geTvSeriesWatchListStatus: locator(),
-  //       geTvSeriesRecommendations: locator(),
-  //       geTvSeriesDetail: locator(),
-  //       removeSeriesWatchlist: locator(),
-  //       saveSeriesWatchlist: locator()),
-  // );
-  // locator.registerFactory(
-  //   () => TvSeriesSearchNotifier(
-  //     searchTvSeries: locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => PopularTvSeriesNotifier(
-  //     locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //       () => OnAirTvSeriesNotifier(
-  //     locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => TopRatedTvSeriesNotifier(
-  //     getTopRatedTvSeries: locator(),
-  //   ),
-  // );
-  // locator.registerFactory(
-  //   () => WatchlistTvSeriesNotifier(
-  //     getTvSeriesWatchlist: locator(),
-  //   ),
-  // );
   //movie
   locator.registerFactory(
           () => MovieNowPlayingBloc(

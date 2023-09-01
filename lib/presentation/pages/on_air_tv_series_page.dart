@@ -1,5 +1,4 @@
  import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
-import 'package:ditonton/presentation/provider/on_air_tv_series_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
