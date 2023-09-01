@@ -1,0 +1,29 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/hPea3Qy5Gd6z4kJLUruBbwAH8Rm.jpg",
+      "id": 60059,
+      "name": "Better Call Saul",
+      "original_language": "en",
+      "original_name": "Better Call Saul",
+      "overview": "overview",
+      "poster_path": "/fC2HDm5t0kHl7mTm7jxMR31b7by.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        80,
+        18
+      ],
+      "popularity": 161.543,
+      "first_air_date": "2015-02-08",
+      "vote_average": 8.643,
+      "vote_count": 4278,
+      "origin_country": [
+        "US"
+      ]
+    }
+  ],
+  "total_pages": 2,
+  "total_results": 40
+}
