@@ -41,7 +41,7 @@ class TvSeriesPopularBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
   TvSeriesPopularBloc(this._getPopularTvSeries)
       : super(PopularTvSeriesInitial()) {
     on<FetchPopularTvSeries>((event, emit) async {
-      emit(PopularTvSeriesInitial());
+      emit(PopularTvSeriesLoading());
 
       final result = await _getPopularTvSeries.execute();
 
@@ -73,7 +73,7 @@ class TvSeriesDetailBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
   TvSeriesDetailBloc(this._getTvSeriesDetail)
       : super(TvSeriesDetailInitial()) {
     on<FetchDetailTvSeries>((event, emit) async {
-      emit(TvSeriesWatchlistLoading());
+      emit(TvSeriesDetailLoading());
 
       final result = await _getTvSeriesDetail.execute(event.id);
 

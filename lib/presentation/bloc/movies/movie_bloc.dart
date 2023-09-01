@@ -40,7 +40,7 @@ class MovieTopRatedBloc extends Bloc<MovieEvent, MovieState> {
 
   MovieTopRatedBloc(this._getTopRatedMovies) : super(TopRatedMovieInitial()) {
     on<FetchTopRatedMovie>((event, emit) async {
-      emit(NowPlayingMovieLoading());
+      emit(TopRatedMovieLoading());
 
       final result = await _getTopRatedMovies.execute();
 

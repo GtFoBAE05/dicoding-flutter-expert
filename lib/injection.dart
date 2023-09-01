@@ -30,6 +30,7 @@ import 'package:ditonton/domain/usecases/search_tv_series.dart';
 import 'package:ditonton/presentation/bloc/movies/movie_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
+import 'package:http/io_client.dart';
 
 import 'presentation/bloc/tv_series/tv_series_bloc.dart';
 
@@ -163,4 +164,5 @@ void init() {
 
   // external
   locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton<IOClient>(() => IOClient());
 }
