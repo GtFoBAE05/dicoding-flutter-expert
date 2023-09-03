@@ -20,7 +20,7 @@ void main() {
 
   setUp(() {
     mockIOClient = MockIOClient();
-    dataSource = MovieRemoteDataSourceImpl(client: mockIOClient);
+    dataSource = MovieRemoteDataSourceImpl(ioClient: mockIOClient);
   });
 
   group('get Now Playing Movies', () {

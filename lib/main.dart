@@ -30,7 +30,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  di.init();
+  await di.init();
   runApp(MyApp());
 }
 
